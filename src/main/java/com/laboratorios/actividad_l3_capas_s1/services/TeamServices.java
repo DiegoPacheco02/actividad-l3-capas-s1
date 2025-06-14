@@ -25,10 +25,12 @@ public class TeamServices {
         newTeam.setCoach(teamDto.getCoach());
         newTeam.setTitles(teamDto.getTitles());
 
-    public QueryTeamsDto getClubsByCountry(String country){
-
-        Team team = teamRepository.findByCountry(country)
-                .orElseThrow(() -> new IllegalArgumentException("Country not found"));
+        teamRepository.save(newTeam);
+    }
+  
+    public QueryTeamsDto getTeamByName(String name) {
+        Team team = teamRepository.findByName(name);
+        if (team == null) throw new NoResultException("Team not found with name: " + name);
 
         return new QueryTeamsDto(
                 team.getId(),
@@ -39,22 +41,16 @@ public class TeamServices {
         );
     }
 
-}
-        teamRepository.save(newTeam);
+    public QueryTeamsDto getClubsByCountry(String country){
+        Team team = teamRepository.findByCountry(country)
+                .orElseThrow(() -> new IllegalArgumentException("Country not found"));
 
-    }
-  
-    public QueryTeamsDto getTeamByName(String name) {
-        Team team = teamRepository.findByName(name);
-        if (team == null) throw new NoResultException("Team not found with name: " + name);
-
-        QueryTeamsDto queryTeamsDto = new QueryTeamsDto();
-        queryTeamsDto.setId(team.getId());
-        queryTeamsDto.setName(team.getName());
-        queryTeamsDto.setCountry(team.getCountry());
-        queryTeamsDto.setCoach(team.getCoach());
-        queryTeamsDto.setTitles(team.getTitles());
-
-        return queryTeamsDto;
+        return new QueryTeamsDto(
+                team.getId(),
+                team.getName(),
+                team.getCountry(),
+                team.getCoach(),
+                team.getTitles()
+        );
     }
 }
