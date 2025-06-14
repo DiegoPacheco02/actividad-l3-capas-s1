@@ -13,8 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(schema = "VideoGames")
 @NoArgsConstructor
-
-public class VideoGames {
+public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
