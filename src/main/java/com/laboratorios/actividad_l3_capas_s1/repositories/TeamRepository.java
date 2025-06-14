@@ -10,6 +10,6 @@ import java.util.UUID;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, UUID> {
 
-
     Optional<Team> findByCountry(String country);
+    Team findByName(String name);
 }
