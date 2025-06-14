@@ -11,8 +11,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(schema = "VideoGames")
+
+@Table(schema = "Team")
 @NoArgsConstructor
+
+
 public class Team {
 
     @Id
