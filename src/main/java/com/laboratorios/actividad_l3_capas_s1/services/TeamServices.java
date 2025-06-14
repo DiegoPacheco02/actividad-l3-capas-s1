@@ -25,6 +25,21 @@ public class TeamServices {
         newTeam.setCoach(teamDto.getCoach());
         newTeam.setTitles(teamDto.getTitles());
 
+    public QueryTeamsDto getClubsByCountry(String country){
+
+        Team team = teamRepository.findByCountry(country)
+                .orElseThrow(() -> new IllegalArgumentException("Country not found"));
+
+        return new QueryTeamsDto(
+                team.getId(),
+                team.getName(),
+                team.getCountry(),
+                team.getCoach(),
+                team.getTitles()
+        );
+    }
+
+}
         teamRepository.save(newTeam);
 
     }
