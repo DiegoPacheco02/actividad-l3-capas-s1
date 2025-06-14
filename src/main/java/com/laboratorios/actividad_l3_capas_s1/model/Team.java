@@ -11,10 +11,10 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(schema = "VideoGames")
+@Table(schema = "Team")
 @NoArgsConstructor
 
-public class VideoGames {
+public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
